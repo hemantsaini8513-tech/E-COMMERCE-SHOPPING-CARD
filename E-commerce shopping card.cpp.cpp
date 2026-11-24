@@ -33,7 +33,7 @@ private:
     double total;
     string discountTrail;
 
-    // Increase array capacity
+    
     void resize() {
         capacity = capacity * 2;
 
@@ -54,4 +54,24 @@ private:
             total += items[i].price * items[i].quantity;
         }
     }
+public:
+    Cart() {
+        size = 0;
+        capacity = 2;
+        total = 0;
 
+        items = new Product[capacity];
+        discountTrail = "No discount applied";
+    }
+
+    Cart& operator+=(Product p) {
+        if (size == capacity) {
+            resize();
+        }
+
+        items[size] = p;
+        size++;
+
+        calculateTotal();
+        return *this;
+    }
