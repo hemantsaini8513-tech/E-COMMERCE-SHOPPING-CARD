@@ -75,3 +75,20 @@ private:
         calculateTotal();
         return *this;
     }
+    
+     Cart& operator-=(int id) {
+        bool found = false;
+
+        for (int i = 0; i < size; i++) {
+            if (items[i].id == id) {
+                for (int j = i; j < size - 1; j++) {
+                    items[j] = items[j + 1];
+                }
+
+                size--;
+                found = true;
+                break;
+            }
+        }
+
+    
